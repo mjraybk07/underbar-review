@@ -383,7 +383,36 @@
   // TIP: This function's test suite will ask that you not modify the original
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
+
+  // i - an array
+  // o - a new array copy with randomized elements
+  // c - do not modify original array,
+  //     array should have same length and contents
+  // e - none
+  // se - none
+
+  // plan -
+  /// make a copy of the original array
+  //  start with and empty array,
+  //  randomize the elements from the original array
+  //  after randomize
+  //  push random element to new array
+  //  delete element that was pushed from copy array
+  // condition?
+  // iterate over the copy
+
+
+
   _.shuffle = function(array) {
+    var copy = array.slice();
+    var shuffled = [];
+
+    for (var i = 0; i < array.length; i ++) {
+      var random = Math.floor(Math.random() * copy.length);
+      shuffled.push(copy[random]);
+      copy.splice(random, 1);
+    }
+    return shuffled;
   };
 
 
