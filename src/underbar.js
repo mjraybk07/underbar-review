@@ -401,8 +401,6 @@
   // condition?
   // iterate over the copy
 
-
-
   _.shuffle = function(array) {
     var copy = array.slice();
     var shuffled = [];
@@ -418,6 +416,7 @@
 
   /**
    * ADVANCED
+
    * =================
    *
    * Note: This is the end of the pre-course curriculum. Feel free to continue,
@@ -426,7 +425,42 @@
 
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
+
+  /*
+
+  i - collection, functionorkey and arguments
+  o - a copy of the collection modified by the invoked functionOrKey and its arguments on each element
+  c - none
+  se - none
+  e - no arguments passed in
+
+  plan:
+  create arguments variable
+  iterate through the collection
+
+  condition 1:
+    if functionOrKey is a function
+      invoke the function on the element w/ the args or none
+
+  condition 2
+    if functionOrKey is a string
+      invoke the function on the element w/ the args or none (formatted differently? inside of [])
+  */
+
   _.invoke = function(collection, functionOrKey, args) {
+    var args = args || [];
+    var result = [];
+
+    if ( typeof functionOrKey === 'function' ) {
+      collection.forEach( (element) => {
+        result.push(functionOrKey.apply(element, args));
+      });
+    } else if ( typeof functionOrKey === 'string' ) {
+      collection.forEach ( (element) => {
+        result.push(element[functionOrKey].apply(element, args));
+      });
+    }
+    return result;
   };
 
   // Sort the object's values by a criterion produced by an iterator.
